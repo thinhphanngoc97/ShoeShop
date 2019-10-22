@@ -1,0 +1,5 @@
+﻿@model List<Model.EF.CATEGORY>
+@foreach (var item in Model)
+{
+    <li class="nav-item"><a class="nav-link" href="/san-pham/@item.Metadata-@item.Id">@item.Name</a></li>
+}

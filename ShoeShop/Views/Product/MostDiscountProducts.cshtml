@@ -1,0 +1,27 @@
+﻿@using Model.EF;
+@model List<PRODUCT>
+@{
+    foreach (var item in Model)
+    {
+        <a href="/chi-tiet/@item.Metadata-@item.Id">
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="single-product">
+                    <img class="img-fluid" src="@item.Image_Thumbnail" alt="">
+                    <div class="product-details s_product_text">
+                        <h6>
+                            @item.Name
+                        </h6>
+                        <div class="price">
+                            <h6>@(item.Discount_Amount > 0 ? String.Format("{0:0,0}đ", item.Price * (100 - item.Discount_Amount) / 100) : String.Format("{0:0,0}đ", item.Price))</h6>
+                            <h6 class="l-through">@(item.Discount_Amount > 0 ? String.Format("{0:0,0}đ", item.Price) : null)</h6>
+                        </div>
+                        <div class="prd-bottom card_area">
+                            <a class="primary-btn" href="/them-gio-hang?productId=@item.Id&quantity=1">Thêm vào giỏ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    }
+}

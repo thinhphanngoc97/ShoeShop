@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Trang chủ";
+    var categoryList = (List<Model.EF.CATEGORY>)ViewBag.CategoryList;
+}
+<!-- Start banner Area -->
+<section class="banner-area home_banner">
+    <div class="home_banner_wrapper">
+        <div class="banner_shop_name">
+            <h3>ShoeShop</h3>
+        </div>
+        <div class="banner_title">
+            <h1>Sự lựa chọn của đam mê</h1>
+        </div>
+        <div class="banner_explore_button">
+            <a href="#most_discount_products" class="explore_btn">Khám phá</a>
+            <a href="/lien-he" class="contact_btn">Liên hệ</a>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start features Area -->
+<section class="features-area section_gap">
+    <div class="container">
+        <div class="row features-inner">
+            <!-- single features -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-features">
+                    <div class="f-icon">
+                        <img src="~/Content/img/features/f-icon1.png" alt="">
+                    </div>
+                    <h6>Miễn phí vận chuyển</h6>
+                    <p>Cho tất cả đơn hàng tại Shoe Shop</p>
+                </div>
+            </div>
+            <!-- single features -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-features">
+                    <div class="f-icon">
+                        <img src="~/Content/img/features/f-icon2.png" alt="">
+                    </div>
+                    <h6>1 đổi 1 trong vòng 1 tháng</h6>
+                    <p>Đối với sản phẩm lỗi kỹ thuật.</p>
+                </div>
+            </div>
+            <!-- single features -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-features">
+                    <div class="f-icon">
+                        <img src="~/Content/img/features/f-icon3.png" alt="">
+                    </div>
+                    <h6>Hỗ trợ 24/7</h6>
+                    <p>Thông qua nhiều kênh mạng xã hội.</p>
+                </div>
+            </div>
+            <!-- single features -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-features">
+                    <div class="f-icon">
+                        <img src="~/Content/img/features/f-icon4.png" alt="">
+                    </div>
+                    <h6>Thanh toán tiện lợi</h6>
+                    <p>Nhanh chóng và an toàn.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End features Area -->
+<!-- Start Categories Area -->
+<section class="category_area">
+    <div class="container">
+        <div class="categories_home row">
+            @if (categoryList != null)
+            {
+                foreach (var item in categoryList)
+                {
+                    <div class="col-md-4 single_category">
+                        <a href="/san-pham/@item.Metadata-@item.Id">
+                            <h3>@item.Name <i class="fa fa-angle-right"></i></h3>
+                        </a>
+                    </div>
+
+                }
+            }
+        </div>
+    </div>
+</section>
+<!-- End Categories Area -->
+<section class="section_gap" id="most_discount_products">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <div class="section-title">
+                    <h1>Sản phẩm khuyến mãi hot nhất</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @Html.Action("MostDiscountProducts", "Product")
+        </div>
+    </div>
+</section>
+<!-- End hot products Area -->
+<!-- Start newest products Area -->
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <div class="section-title">
+                    <h1>Sản phẩm mới nhất</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @Html.Action("NewestProducts", "Product")
+        </div>
+    </div>
+</section>
+<!-- End newest products Area -->

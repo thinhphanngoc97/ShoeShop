@@ -1,0 +1,133 @@
+﻿@using ShoeShop.Common;
+@using Model.EF;
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="~/Content/img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="CodePixar">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>@ViewBag.Title - Shoe Shop</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/Content/css/linearicons.css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/css/themify-icons.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/Content/css/nice-select.css">
+    <link rel="stylesheet" href="~/Content/css/nouislider.min.css">
+    <link rel="stylesheet" href="~/Content/css/ion.rangeSlider.css" />
+    <link rel="stylesheet" href="~/Content/css/ion.rangeSlider.skinFlat.css" />
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/css/main.css">
+</head>
+<body>
+    <!-- Facebook comment plugin -->
+    <div id="fb-root"></div>
+    <!-- Start Header Area -->
+    <header class="header_area sticky-header">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light main_box">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="/"><img src="~/Content/img/logo.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            <li class="nav-item"><a class="nav-link" href="/">Trang chủ</a></li>
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                   aria-expanded="false">Sản phẩm &nbsp;<i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    @Html.Action("HeaderCategory", "Home")
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="/lien-he">Liên hệ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/gioi-thieu">Giới thiệu</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item" title="Tìm kiếm">
+                                <button class="search nav-link"><span class="fa fa-search" id="search"></span></button>
+                            </li>
+                            <li class="nav-item" title="Xem giỏ hàng">
+                                
+                            </li>
+                            <li class="nav-item submenu dropdown">
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="search_input" id="search_input_box">
+            @using (Html.BeginForm("SearchResult", "Search", FormMethod.Get))
+            {
+                <div class="container d-flex justify-content-between">
+                    <input type="text" value="@ViewBag.searchString" name="searchText" class="form-control" id="search_input" placeholder="Nhập từ khoá tìm kiếm">
+                    <button type="submit" class="btn"></button>
+                    <span class="lnr lnr-cross" id="close_search" title="Đóng"></span>
+                </div>
+            }
+        </div>
+    </header>
+    <!-- End Header Area -->
+    @RenderBody()
+    <!-- Start footer Area -->
+    <footer class="footer-area section_gap">
+        <div class="container">
+            <hr />
+            <div class="footer_wrap">
+                <div class="row justify-content-center social_info">
+                    <a href="#"><i class="fa fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa fa-tumblr"></i></a>
+                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                </div>
+                <div class="copyright_info">
+                    <span>
+                        &copy; ShoeShop
+                        <script>document.write(new Date().getFullYear());</script>. All rights reserved.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer Area -->
+    <!-- JavaScript -->
+    <script src="~/Scripts/vendor/jquery-2.2.4.min.js"></script>
+    <script src="~/Scripts/vendor/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Scripts/jquery.nice-select.min.js"></script>
+    <script src="~/Scripts/jquery.sticky.js"></script>
+    <script src="~/Scripts/nouislider.min.js"></script>
+    <script src="~/Scripts/jquery.magnific-popup.min.js"></script>
+    <script src="~/Scripts/owl.carousel.min.js"></script>
+    <script src="~/Scripts/rater.js" charset="utf-8"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/main.js"></script>
+
+    @RenderSection("additionalJs", false)
+    <!-- SnackbarJS -->
+    <script src="~/Scripts/snackbar.min.js"></script>
+    <script src="~/Scripts/bootstrap-material-design.js"></script>
+    <script>
+        $('body').bootstrapMaterialDesign();
+    </script>
+</body>
+</html>
