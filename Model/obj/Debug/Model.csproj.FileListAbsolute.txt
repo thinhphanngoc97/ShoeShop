@@ -10,3 +10,15 @@ D:\Lap trinh\C#\ShoeShop\Model\obj\Debug\Model.csproj.CopyComplete
 D:\Lap trinh\C#\ShoeShop\Model\obj\Debug\Model.dll
 D:\Lap trinh\C#\ShoeShop\Model\obj\Debug\Model.pdb
 D:\Lap trinh\C#\ShoeShop\Model\obj\Debug\Model.csprojAssemblyReference.cache
+D:\Lap trinh\Web\ShoeShop\Model\bin\Debug\Model.dll.config
+D:\Lap trinh\Web\ShoeShop\Model\bin\Debug\Model.dll
+D:\Lap trinh\Web\ShoeShop\Model\bin\Debug\Model.pdb
+D:\Lap trinh\Web\ShoeShop\Model\bin\Debug\EntityFramework.dll
+D:\Lap trinh\Web\ShoeShop\Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\Lap trinh\Web\ShoeShop\Model\bin\Debug\EntityFramework.xml
+D:\Lap trinh\Web\ShoeShop\Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\Lap trinh\Web\ShoeShop\Model\obj\Debug\Model.csprojAssemblyReference.cache
+D:\Lap trinh\Web\ShoeShop\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+D:\Lap trinh\Web\ShoeShop\Model\obj\Debug\Model.csproj.CopyComplete
+D:\Lap trinh\Web\ShoeShop\Model\obj\Debug\Model.dll
+D:\Lap trinh\Web\ShoeShop\Model\obj\Debug\Model.pdb
