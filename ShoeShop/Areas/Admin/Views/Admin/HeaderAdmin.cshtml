@@ -1,0 +1,13 @@
+﻿@model Model.EF.ADMIN
+
+@{
+	var defaultAvatar = Url.Content("~/Areas/Admin/Content/images/icon/avatar-01.jpg");
+}
+
+<div class="account2">
+	<div class="image img-cir img-120">
+		<img src="@(String.IsNullOrEmpty(Model.Avatar) ? defaultAvatar : Model.Avatar)" />
+	</div>
+	<h4 class="name">@Model.Name</h4>
+	<button type="button" class="btn btn-link" data-toggle="modal" data-target="#signoutModal">Đăng xuất</button>
+</div>
