@@ -164,3 +164,7 @@ D:\Lap trinh\Web\ShoeShop\ShoeShop\obj\Debug\ShoeShop.csproj.CoreCompileInputs.c
 D:\Lap trinh\Web\ShoeShop\ShoeShop\obj\Debug\ShoeShop.csproj.CopyComplete
 D:\Lap trinh\Web\ShoeShop\ShoeShop\obj\Debug\ShoeShop.dll
 D:\Lap trinh\Web\ShoeShop\ShoeShop\obj\Debug\ShoeShop.pdb
+D:\Lap trinh\Web\ShoeShop\ShoeShop\bin\PagedList.dll
+D:\Lap trinh\Web\ShoeShop\ShoeShop\bin\PagedList.Mvc.dll
+D:\Lap trinh\Web\ShoeShop\ShoeShop\bin\PagedList.xml
+D:\Lap trinh\Web\ShoeShop\ShoeShop\bin\PagedList.Mvc.xml

@@ -22,3 +22,7 @@ D:\Lap trinh\Web\ShoeShop\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
 D:\Lap trinh\Web\ShoeShop\Model\obj\Debug\Model.csproj.CopyComplete
 D:\Lap trinh\Web\ShoeShop\Model\obj\Debug\Model.dll
 D:\Lap trinh\Web\ShoeShop\Model\obj\Debug\Model.pdb
+D:\Lap trinh\Web\ShoeShop\Model\bin\Debug\PagedList.dll
+D:\Lap trinh\Web\ShoeShop\Model\bin\Debug\PagedList.Mvc.dll
+D:\Lap trinh\Web\ShoeShop\Model\bin\Debug\PagedList.xml
+D:\Lap trinh\Web\ShoeShop\Model\bin\Debug\PagedList.Mvc.xml

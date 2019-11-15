@@ -1,0 +1,73 @@
+﻿@using ShoeShop.Models;
+@model CategoryModel
+@{
+    ViewBag.Title = Model.Name + " - Danh sách sản phẩm";
+}
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Sản phẩm @Model.Name</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<div class="container product_list_container">
+    <div class="row">
+        <div class="col-lg-3 col-md-4">
+            <div class="sidebar-filter mt-50 row">
+                <div class="common-filter col-4 col-md-12">
+                    <div class="head">Thương hiệu</div>
+                    <form action="#">
+                        <ul>
+                            @{
+                                foreach (string item in Model.ManufacturerList)
+                                {
+                                    <li class="filter-list">
+                                        <a href="@Url.Action("ProductList", new { brand=item, style=Model.Style, minimumPrice=Model.MinimumPrice, maximumPrice=Model.MaximumPrice })" class="@(item == "Tất cả" && Model.Brand == null ? "active" : (Model.Brand == null ? String.Empty : (Model.Brand == item ? "active" : String.Empty)))">@item</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </form>
+                </div>
+                <div class="common-filter col-4 col-md-12">
+                    <div class="head">Kiểu dáng</div>
+                    <form action="#">
+                        <ul>
+                            @{
+                                foreach (string item in Model.StyleList)
+                                {
+                                    <li class="filter-list">
+                                        <a href="@Url.Action("ProductList", new { brand=Model.Brand, style=item, minimumPrice=Model.MinimumPrice, maximumPrice=Model.MaximumPrice })" class="@(item == "Tất cả" && Model.Style == null ? "active" : (Model.Style == null ? String.Empty : (Model.Style == item ? "active" : String.Empty)))">@item</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </form>
+                </div>
+                <div class="common-filter col-4 col-md-12">
+                    <div class="head">Giá</div>
+                    <ul>
+                        <li class="filter-list"><a href="@Url.Action("ProductList", new { brand=Model.Brand, style=Model.Style })" class="@(Model.MaximumPrice.HasValue ? String.Empty : "active")">Tất cả</a></li>
+                        <li class="filter-list"><a href="@Url.Action("ProductList", new { brand=Model.Brand, style=Model.Style, maximumPrice=1000000 })" class="@(Model.MaximumPrice.HasValue ? (Model.MaximumPrice == 1000000 ? "active" : String.Empty) : String.Empty)">Dưới 1.000.000đ</a></li>
+                        <li class="filter-list"><a href="@Url.Action("ProductList", new { brand=Model.Brand, style=Model.Style, minimumPrice=1000000, maximumPrice=3000000 })" class="@(Model.MaximumPrice.HasValue ? (Model.MaximumPrice == 3000000 ? "active" : String.Empty) : String.Empty)">1.000.000đ - 3.000.000đ</a></li>
+                        <li class="filter-list"><a href="@Url.Action("ProductList", new { brand=Model.Brand, style=Model.Style, minimumPrice=3000000, maximumPrice=5000000 })" class="@(Model.MaximumPrice.HasValue ? (Model.MaximumPrice == 5000000 ? "active" : String.Empty) : String.Empty)">3.000.000đ - 5.000.000đ</a></li>
+                        <li class="filter-list"><a href="@Url.Action("ProductList", new { brand=Model.Brand, style=Model.Style, minimumPrice=5000000, maximumPrice=7000000 })" class="@(Model.MaximumPrice.HasValue ? (Model.MaximumPrice == 7000000 ? "active" : String.Empty) : String.Empty)">5.000.000đ - 7.000.000đ</a></li>
+                        <li class="filter-list"><a href="@Url.Action("ProductList", new { brand=Model.Brand, style=Model.Style, minimumPrice=7000000 })" class="@(Model.MinimumPrice.HasValue ? (Model.MinimumPrice == 7000000 ? "active" : String.Empty) : String.Empty)">Trên 7.000.000đ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-9 col-md-8" id="refreshDiv">
+            @{
+                Html.RenderPartial("ProductGrid", Model);
+            }
+        </div>
+    </div>
+</div>
+
+
