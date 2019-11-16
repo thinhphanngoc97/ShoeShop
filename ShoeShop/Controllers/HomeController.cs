@@ -22,5 +22,10 @@ namespace ShoeShop.Controllers
             var listCategory = new CategoryDAO().GetListOfCategories();
             return PartialView(listCategory);
         }
+
+        public ActionResult About()
+        {
+            return View();
+        }
     }
 }

@@ -21,6 +21,20 @@ namespace ShoeShop
             );
 
             routes.MapRoute(
+               name: "Contact",
+               url: "lien-he",
+               defaults: new { controller = "Contact", action = "Contact", id = UrlParameter.Optional },
+               namespaces: new[] { "ShoeShop.Controllers" }
+            );
+
+            routes.MapRoute(
+               name: "About",
+               url: "gioi-thieu",
+               defaults: new { controller = "Home", action = "About", id = UrlParameter.Optional },
+               namespaces: new[] { "ShoeShop.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
