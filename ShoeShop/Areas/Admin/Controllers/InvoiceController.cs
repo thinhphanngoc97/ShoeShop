@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace GuitarShop.Areas.Admin.Controllers
+namespace ShoeShop.Areas.Admin.Controllers
 {
     public class InvoiceController : BaseController
 	{
