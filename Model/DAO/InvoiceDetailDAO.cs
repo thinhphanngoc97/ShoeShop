@@ -9,11 +9,11 @@ namespace Model.DAO
 {
     public class InvoiceDetailDAO
     {
-        GuitarShopDbContext db = null;
+        ShoeShopDbContext db = null;
 
         public InvoiceDetailDAO()
         {
-            db = new GuitarShopDbContext();
+            db = new ShoeShopDbContext();
         }
 
         public bool Insert(INVOICE_DETAIL invoiceDetail)
