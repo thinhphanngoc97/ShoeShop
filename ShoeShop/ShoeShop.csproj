@@ -265,7 +265,6 @@
     <Content Include="Areas\Admin\Content\vendor\vector-map\jqvmap.min.css" />
     <Content Include="Areas\Admin\Content\vendor\wow\animate.css" />
     <Content Include="Areas\Admin\Content\vendor\wow\wow.min.js" />
-<<<<<<< HEAD
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\EntityFramework.dll" />
@@ -336,8 +335,6 @@
     <Content Include="bin\System.Web.WebPages.Razor.xml" />
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
-=======
->>>>>>> 820a0c71b80ba47cb9241ea87d78922165d8a877
     <Content Include="Content\css\availability-calendar.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\font-awesome.min.css" />
@@ -487,7 +484,6 @@
     <Content Include="Areas\Admin\Views\Admin\AdminDetailForm.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\HeaderAdmin.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\InsertAdminForm.cshtml" />
-<<<<<<< HEAD
     <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Login\LoginForm.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
@@ -509,21 +505,16 @@
     <Content Include="obj\Debug\ShoeShop.csproj.CopyComplete" />
     <Content Include="obj\Debug\ShoeShop.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\ShoeShop.csprojAssemblyReference.cache" />
-=======
->>>>>>> 820a0c71b80ba47cb9241ea87d78922165d8a877
     <Content Include="Areas\Admin\Views\Invoice\Invoice.cshtml" />
     <Content Include="Areas\Admin\Views\Invoice\InvoiceDetail.cshtml" />
     <Content Include="Areas\Admin\Views\Invoice\InvoiceDetailForm.cshtml" />
     <Content Include="Areas\Admin\Views\Invoice\ListInvoiceTable.cshtml" />
     <Content Include="Areas\Admin\Views\Invoice\NumberInvoice.cshtml" />
-<<<<<<< HEAD
-=======
     <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Login\LoginForm.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
->>>>>>> 820a0c71b80ba47cb9241ea87d78922165d8a877
     <None Include="packages.config" />
     <Content Include="Scripts\.DS_Store" />
     <Content Include="Views\Home\HeaderCategory.cshtml" />
