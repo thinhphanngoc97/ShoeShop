@@ -61,8 +61,13 @@
   <ItemGroup>
     <Compile Include="DAO\AdminDAO.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
+    <Compile Include="DAO\DiscountCodeDAO.cs" />
+    <Compile Include="DAO\InvoiceDAO.cs" />
+    <Compile Include="DAO\InvoiceDetailDAO.cs" />
     <Compile Include="DAO\ManufacturerDAO.cs" />
+    <Compile Include="DAO\MessageDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
+    <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="EF\ADMIN.cs" />
     <Compile Include="EF\CATEGORY.cs" />
     <Compile Include="EF\DISCOUNT_CODE.cs" />
