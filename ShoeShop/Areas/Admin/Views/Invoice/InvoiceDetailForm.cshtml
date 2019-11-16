@@ -1,0 +1,105 @@
+﻿@model Model.EF.INVOICE
+
+<div class="row form-group">
+	<div class="col-12 col-md-6">
+		<label class=" form-control-label">ID</label>
+		@Html.TextBoxFor(model => model.Id, new { @class = "form-control", @readonly = "" })
+	</div>
+	<div class="col-12 col-md-6">
+		<label class=" form-control-label">Thời gian tạo</label>
+		<input type="text" class="form-control" value="@Model.Created_Time.Value.ToString("dd/MM/yyyy HH:mm")" readonly>
+	</div>
+</div>
+<div class="row form-group">
+	<div class="col-12 col-md-6">
+		<label class=" form-control-label">Trị giá</label>
+		<input type="text" class="form-control" value="@String.Format("{0:0,0}đ", @Model.Total)" readonly>
+	</div>
+	<div class="col-12 col-md-6">
+		<label class=" form-control-label">Trạng thái thanh toán</label>
+		<label class="au-checkbox">
+			@Html.CheckBox("checkStatus", Model.Status == 1 ? true : false)
+			<span class="au-checkmark"></span>
+		</label>
+	</div>
+</div>
+<div class="row form-group">
+	<div class="col-12 col-md-6">
+		<label class=" form-control-label">Mã giảm giá</label>
+		<input type="text" class="form-control" value="@(Model.DISCOUNT_CODE == null ? "" : Model.DISCOUNT_CODE.Code)" disabled>
+	</div>
+	<div class="col-12 col-md-6">
+		<label class=" form-control-label">Phương thức thanh toán</label>
+		<select class="form-control" name="selectMethod">
+			<option value="COD" selected="@(Model.Payment_Method == "COD"? true : false)">COD</option>
+			<option value="Banking" selected="@(Model.Payment_Method == "Banking"? true : false)">Banking</option>
+		</select>
+	</div>
+</div>
+<div class="row form-group">
+	<div class="col-12 col-md-6">
+		<label class=" form-control-label">Khách hàng</label>
+		@Html.TextBoxFor(model => model.Customer_Name, new { @class = "form-control" })
+		@Html.ValidationMessageFor(model => model.Customer_Name, "", new { @class = "text-danger" })
+	</div>
+	<div class="col-12 col-md-6">
+		<label class=" form-control-label">Số điện thoại</label>
+		@Html.TextBoxFor(model => model.Customer_Phone, new { @class = "form-control" })
+		@Html.ValidationMessageFor(model => model.Customer_Phone, "", new { @class = "text-danger" })
+	</div>
+</div>
+<div class="row form-group">
+	<div class="col-12 col-md-6">
+		<label class=" form-control-label">Email</label>
+		@Html.TextBoxFor(model => model.Customer_Email, new { @type = "email", @class = "form-control" })
+	</div>
+</div>
+<div class="row form-group">
+	<div class="col-12">
+		<label class=" form-control-label">Địa chỉ</label>
+		@Html.TextBoxFor(model => model.Customer_Address, new { @class = "form-control" })
+		@Html.ValidationMessageFor(model => model.Customer_Address, "", new { @class = "text-danger" })
+	</div>
+</div>
+<div class="row form-group">
+	<div class="col-12">
+		<label class=" form-control-label">Ghi chú</label>
+		<textarea rows="5" name="txtMessage" class="form-control">@Model.Customer_Message</textarea>
+	</div>
+</div>
+
+<div class="row form-group">
+	<div class="col-12">
+		<label class=" form-control-label">Danh sách sản phẩm</label>
+		<div class="table_invoice_detail">
+			<div class="table-responsive table-data">
+				<table class="table">
+					<thead>
+						<tr>
+							<td>Tên sản phẩm</td>
+							<td>Số lượng</td>
+							<td>Thành tiền</td>
+						</tr>
+					</thead>
+					<tbody>
+						@{
+							foreach (var item in Model.INVOICE_DETAIL)
+							{
+								<tr>
+									<td>@item.PRODUCT.Name</td>
+									<td>@item.Quantity</td>
+									<td>@(item.PRODUCT.Discount_Amount > 0 ? String.Format("{0:0,0}đ", item.Quantity * item.PRODUCT.Price * (100 - item.PRODUCT.Discount_Amount) / 100) : String.Format("{0:0,0}đ", item.Quantity * item.PRODUCT.Price))</td>
+								</tr>
+							}
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="action_button_form">
+	<button type="submit" class="btn btn-primary">
+		<i class="zmdi zmdi-save"></i> Lưu thay đổi
+	</button>
+</div>

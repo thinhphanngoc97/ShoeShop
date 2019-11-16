@@ -1,0 +1,344 @@
+﻿@using ShoeShop.Common;
+@using Model.EF;
+
+@{
+	ADMIN admin = (ADMIN)Session[CommonConstants.ADMIN_SESSION];
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags-->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="au theme template">
+	<meta name="author" content="Hau Nguyen">
+	<meta name="keywords" content="au theme template">
+
+	<!-- Title Page-->
+	<title>@ViewBag.Title - Admin</title>
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="~/Areas/Admin/Content/images/mini_logo.png">
+
+	<!-- Fontfaces CSS-->
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="~/Areas/Admin/Content/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+	<link href="~/Areas/Admin/Content/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+	<link href="~/Areas/Admin/Content/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+	<!-- Bootstrap CSS-->
+	<link href="~/Areas/Admin/Content/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+	<!-- Vendor CSS-->
+	<link href="~/Areas/Admin/Content/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+	<link href="~/Areas/Admin/Content/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+	<link href="~/Areas/Admin/Content/vendor/wow/animate.css" rel="stylesheet" media="all">
+	<link href="~/Areas/Admin/Content/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+	<link href="~/Areas/Admin/Content/vendor/slick/slick.css" rel="stylesheet" media="all">
+	<link href="~/Areas/Admin/Content/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+	<link href="~/Areas/Admin/Content/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+	<link href="~/Areas/Admin/Content/vendor/vector-map/jqvmap.min.css" rel="stylesheet" media="all">
+
+	<!-- Main CSS-->
+	<link href="~/Areas/Admin/Content/css/theme.css" rel="stylesheet" media="all">
+
+</head>
+
+<body class="animsition">
+	<div class="page-wrapper">
+		<!-- MENU SIDEBAR-->
+		<aside class="menu-sidebar2">
+			<div class="logo">
+				<a href="/">
+					<img src="~/Areas/Admin/Content/images/logo_admin.png" alt="" />
+				</a>
+			</div>
+			<div class="menu-sidebar2__content js-scrollbar1">
+				@Html.Action("HeaderAdmin", "Admin")
+				<nav class="navbar-sidebar2">
+					<ul class="list-unstyled navbar__list">
+						<li>
+							<a href="@Url.Action("Invoice", "Invoice")">
+								<i class="fas fa-file-alt"></i>Đơn hàng
+							</a>
+							@Html.Action("NumberInvoice", "Invoice")
+						</li>
+						<li>
+							<a href="@Url.Action("Category", "Category")">
+								<i class="fas fa-th-list"></i>Loại sản phẩm
+							</a>
+						</li>
+						<li>
+							<a href="@Url.Action("Product", "Product")">
+								<i class="fas fa-shopping-cart"></i>Sản phẩm
+							</a>
+						</li>
+						<li>
+							<a href="@Url.Action("Discount", "Discount")">
+								<i class="fas fa-percent"></i>Mã giảm giá
+							</a>
+						</li>
+						<li>
+							<a href="@Url.Action("Manufacturer", "Manufacturer")">
+								<i class="fas fa-tags"></i>Thương hiệu
+							</a>
+						</li>
+						<li>
+							<a href="@Url.Action("Message", "Message")">
+								<i class="fas fa-inbox"></i>Hộp thư đến
+							</a>
+						</li>
+						<li>
+							<a href="@Url.Action("Customer", "Customer")">
+								<i class="fas fa-users"></i>Khách hàng
+							</a>
+						</li>
+						<li>
+							<a href="@Url.Action("Admin", "Admin")">
+								<i class="fas fa-shield-alt"></i>Tài khoản
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</aside>
+		<!-- END MENU SIDEBAR-->
+		<!-- PAGE CONTAINER-->
+		<div class="page-container2">
+			<!-- HEADER DESKTOP-->
+			<header class="header-desktop2">
+				<div class="section__content section__content--p30">
+					<div class="container-fluid">
+						<div class="header-wrap2">
+							<div class="logo d-block d-lg-none">
+								<a href="#">
+									<img src="~/Areas/Admin/Content/images/logo_admin.png" alt="" />
+								</a>
+							</div>
+							<div class="header-button2">
+								<div class="header-button-item js-item-menu">
+									<i class="zmdi zmdi-search"></i>
+									<div class="search-dropdown js-dropdown">
+										<form action="">
+											<input class="au-input au-input--full au-input--h65" type="text" placeholder="Nhập từ khoá tìm kiếm" />
+											<span class="search-dropdown__icon">
+												<i class="zmdi zmdi-search"></i>
+											</span>
+										</form>
+									</div>
+								</div>
+								<div class="header-button-item mr-0 js-sidebar-btn">
+									<i class="zmdi zmdi-menu"></i>
+								</div>
+								<div class="setting-menu js-right-sidebar d-none d-lg-block">
+									<div class="account-dropdown__body">
+										<div class="account-dropdown__item">
+											<a href="/">
+												<i class="zmdi zmdi-home"></i>Đến trang người dùng
+											</a>
+										</div>
+									</div>
+									<div class="account-dropdown__body">
+										<div class="account-dropdown__item">
+											<a href="@Url.Action("AdminDetail" , "Admin", new { idAdmin = admin.Id })">
+												<i class="zmdi zmdi-account"></i>Tài khoản
+											</a>
+										</div>
+										<div class="account-dropdown__item">
+											<a href="#">
+												<i class="zmdi zmdi-settings"></i>Cài đặt
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+			<aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
+				<div class="logo">
+					<a href="#">
+						<img src="~/Areas/Admin/Content/images/icon/logo-white.png" alt="Cool Admin" />
+					</a>
+				</div>
+				<div class="menu-sidebar2__content js-scrollbar2">
+					<div class="account2">
+						<div class="image img-cir img-120">
+							<img src="~/Areas/Admin/Content/images/icon/avatar-big-01.jpg" alt="John Doe" />
+						</div>
+						<h4 class="name">john doe</h4>
+						<a href="#">Sign out</a>
+					</div>
+					<nav class="navbar-sidebar2">
+						<ul class="list-unstyled navbar__list">
+							<li class="active has-sub">
+								<a class="js-arrow" href="#">
+									<i class="fas fa-tachometer-alt"></i>Trang chủ
+									<span class="arrow">
+										<i class="fas fa-angle-down"></i>
+									</span>
+								</a>
+								<ul class="list-unstyled navbar__sub-list js-sub-list">
+									<li>
+										<a href="#">
+											<i class="fas fa-tachometer-alt"></i>Dashboard 1
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<i class="fas fa-tachometer-alt"></i>Dashboard 2
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<i class="fas fa-tachometer-alt"></i>Dashboard 3
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<i class="fas fa-tachometer-alt"></i>Dashboard 4
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="inbox.html">
+									<i class="fas fa-file-alt"></i>Đơn hàng
+								</a>
+								<span class="inbox-num">3</span>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fas fa-th-list"></i>Loại sản phẩm
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fas fa-shopping-cart"></i>Sản phẩm
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fas fa-percent"></i>Mã giảm giá
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fas fa-tags"></i>Thương hiệu
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fas fa-inbox"></i>Hộp thư đến
+								</a>
+								<span class="inbox-num">3</span>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fas fa-users"></i>Khách hàng
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fas fa-shield-alt"></i>Tài khoản
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</aside>
+			<!-- END HEADER DESKTOP-->
+			<!-- BREADCRUMB-->
+			<section class="au-breadcrumb m-t-75">
+				<div class="section__content section__content--p30">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="au-breadcrumb-content">
+									<div class="au-breadcrumb-left">
+										<h3>@ViewBag.Title</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- END BREADCRUMB-->
+			<!-- MAIN CONTENT -->
+			@RenderBody()
+			<!-- END MAIN CONTENT -->
+			<!-- FOOTER -->
+			<section class="footer_area">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="copyright">
+								<p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- END FOOTER -->
+		</div>
+		<!-- END PAGE CONTAINER-->
+	</div>
+
+	<!-- modal sigout -->
+	<div class="modal fade" id="signoutModal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="smallmodalLabel">Xác nhận đăng xuất</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>
+						Bạn có chắc chắn muốn đăng xuất không?
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+					<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Logout", "Login")'">Đăng xuất</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Jquery JS-->
+	<script src="~/Areas/Admin/Content/vendor/jquery-3.2.1.min.js"></script>
+	<!-- Bootstrap JS-->
+	<script src="~/Areas/Admin/Content/vendor/bootstrap-4.1/popper.min.js"></script>
+	<script src="~/Areas/Admin/Content/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+	<!-- Vendor JS       -->
+	<script src="~/Areas/Admin/Content/vendor/slick/slick.min.js"></script>
+	<script src="~/Areas/Admin/Content/vendor/wow/wow.min.js"></script>
+	<script src="~/Areas/Admin/Content/vendor/animsition/animsition.min.js"></script>
+	<script src="~/Areas/Admin/Content/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<script src="~/Areas/Admin/Content/vendor/counter-up/jquery.waypoints.min.js"></script>
+	<script src="~/Areas/Admin/Content/vendor/counter-up/jquery.counterup.min.js"></script>
+	<script src="~/Areas/Admin/Content/vendor/circle-progress/circle-progress.min.js"></script>
+	<script src="~/Areas/Admin/Content/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+	<script src="~/Areas/Admin/Content/vendor/chartjs/Chart.bundle.min.js"></script>
+	<script src="~/Areas/Admin/Content/vendor/select2/select2.min.js"></script>
+	<script src="~/Areas/Admin/Content/vendor/vector-map/jquery.vmap.js"></script>
+	<script src="~/Areas/Admin/Content/vendor/vector-map/jquery.vmap.min.js"></script>
+	<script src="~/Areas/Admin/Content/vendor/vector-map/jquery.vmap.sampledata.js"></script>
+	<script src="~/Areas/Admin/Content/vendor/vector-map/jquery.vmap.world.js"></script>
+
+	<!-- Main JS-->
+	<script src="~/Areas/Admin/Content/js/main.js"></script>
+	<!-- Ajax JS-->
+	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+	@RenderSection("privateJS", false)
+
+</body>
+
+</html>
