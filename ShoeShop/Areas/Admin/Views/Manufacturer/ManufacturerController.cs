@@ -7,7 +7,7 @@ using Model.DAO;
 using Model.EF;
 using System.IO;
 
-namespace GuitarShop.Areas.Admin.Controllers
+namespace ShoeShop.Areas.Admin.Controllers
 {
     public class ManufacturerController : BaseController
 	{

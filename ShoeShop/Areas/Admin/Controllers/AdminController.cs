@@ -1,4 +1,4 @@
-﻿using GuitarShop.Common;
+﻿using ShoeShop.Common;
 using Model.DAO;
 using Model.EF;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace GuitarShop.Areas.Admin.Controllers
+namespace ShoeShop.Areas.Admin.Controllers
 {
     public class AdminController : BaseController
 	{

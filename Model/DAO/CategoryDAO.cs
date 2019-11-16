@@ -26,6 +26,62 @@ namespace Model.DAO
         {
             return db.CATEGORY.Where(x => x.Id == id).First();
         }
+        public bool InsertCategory(CATEGORY entity)
+        {
+            try
+            {
+                entity.Metadata = entity.Name.ToLower().Replace(" ", "-");
+                db.CATEGORY.Add(entity);
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public CATEGORY UpdateCategory(CATEGORY entity)
+        {
+            try
+            {
+                var category = db.CATEGORY.Find(entity.Id);
+                if (category.Name != entity.Name)
+                {
+                    category.Name = entity.Name;
+                    category.Metadata = entity.Name.ToLower().Replace(" ", "-");
+                    db.SaveChanges();
+                }
+
+                return category;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public bool DeleteCategory(int idCategory)
+        {
+            using (var transactions = db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var category = db.CATEGORY.Find(idCategory);
+                    db.CATEGORY.Remove(category);
+                    db.SaveChanges();
+                    transactions.Commit();
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    transactions.Rollback();
+                    return false;
+                }
+            }
+        }
 
         public List<string> GetListOfStylesAndQuantity()
         {

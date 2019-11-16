@@ -9,10 +9,10 @@ namespace Model.DAO
 {
     public class ManufacturerDAO
     {
-        GuitarShopDbContext db = null;
+        ShoeShopDbContext db = null;
         public ManufacturerDAO()
         {
-            db = new GuitarShopDbContext();
+            db = new ShoeShopDbContext();
         }
 
         public List<MANUFACTURER> GetAllManufacturers()

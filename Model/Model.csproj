@@ -59,7 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\AdminDAO.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
+    <Compile Include="DAO\ManufacturerDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
     <Compile Include="EF\ADMIN.cs" />
     <Compile Include="EF\CATEGORY.cs" />
