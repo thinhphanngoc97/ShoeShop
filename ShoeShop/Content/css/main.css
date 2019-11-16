@@ -7991,3 +7991,13 @@ label {
         .error_area .return_home:hover {
             background-color: #ffba00;
         }
+
+
+/*============== about_area css ================*/
+.about-content {
+    color: #000000;
+    margin-top: 30px;
+    font-size: 16px;
+    text-align: justify;
+}
+/*============== end about_area css ================*/
