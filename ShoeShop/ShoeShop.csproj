@@ -412,6 +412,7 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Content\scss\theme\_about.scss" />
     <None Include="packages.config" />
     <Content Include="Scripts\.DS_Store" />
     <Content Include="Views\Home\HeaderCategory.cshtml" />
