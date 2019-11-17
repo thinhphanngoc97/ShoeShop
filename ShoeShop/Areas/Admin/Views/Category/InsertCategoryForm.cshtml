@@ -1,0 +1,17 @@
+﻿@model Model.EF.CATEGORY
+
+
+@using (Ajax.BeginForm("InsertCategory", "Category", new AjaxOptions { HttpMethod = "POST", OnSuccess = "fnInsertCategorySuccess" }, new { @class = "form-horizontal" }))
+{
+    <div class="row form-group">
+        <div class="col-12">
+            <label class=" form-control-label">Tên loại sản phẩm</label>
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="action_button_form">
+        <button type="submit" class="btn btn-primary">
+            <i class="zmdi zmdi-plus"></i> Tạo mới
+        </button>
+    </div>
+}
