@@ -438,7 +438,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Category\" />
     <Folder Include="Areas\Admin\Views\Customer\" />
     <Folder Include="Areas\Admin\Views\Discount\" />
     <Folder Include="Areas\Admin\Views\Message\" />
@@ -515,6 +514,10 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Category.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\CategoryDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\CategoryDetailForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\InsertCategoryForm.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\.DS_Store" />
     <Content Include="Views\Home\HeaderCategory.cshtml" />
