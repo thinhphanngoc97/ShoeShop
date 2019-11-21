@@ -23,6 +23,7 @@ namespace Model.EF
         public virtual DbSet<PRODUCT_IMAGE> PRODUCT_IMAGE { get; set; }
         public virtual DbSet<RATE> RATE { get; set; }
         public virtual DbSet<USER> USER { get; set; }
+        public virtual DbSet<SIZE> SIZE { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
