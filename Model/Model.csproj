@@ -154,6 +154,7 @@
     <Compile Include="EF\MESSAGE.cs" />
     <Compile Include="EF\PRODUCT.cs" />
     <Compile Include="EF\PRODUCT_IMAGE.cs" />
+    <Compile Include="EF\PRODUCT_SIZE.cs" />
     <Compile Include="EF\RATE.cs" />
     <Compile Include="EF\ShoeShopDbContext.cs" />
     <Compile Include="EF\SIZE.cs" />
@@ -161,6 +162,10 @@
     <Compile Include="Migrations\201911211135248_ShoeShopDB-v1.cs" />
     <Compile Include="Migrations\201911211135248_ShoeShopDB-v1.designer.cs">
       <DependentUpon>201911211135248_ShoeShopDB-v1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911211307477_ShoeShopDB-v2.cs" />
+    <Compile Include="Migrations\201911211307477_ShoeShopDB-v2.designer.cs">
+      <DependentUpon>201911211307477_ShoeShopDB-v2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -177,6 +182,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201911211135248_ShoeShopDB-v1.resx">
       <DependentUpon>201911211135248_ShoeShopDB-v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911211307477_ShoeShopDB-v2.resx">
+      <DependentUpon>201911211307477_ShoeShopDB-v2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

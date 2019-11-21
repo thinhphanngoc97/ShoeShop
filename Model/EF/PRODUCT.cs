@@ -13,6 +13,7 @@ namespace Model.EF
         public PRODUCT()
         {
             INVOICE_DETAIL = new HashSet<INVOICE_DETAIL>();
+            PRODUCT_SIZE = new HashSet<PRODUCT_SIZE>();
             PRODUCT_IMAGE = new HashSet<PRODUCT_IMAGE>();
             RATE = new HashSet<RATE>();
         }
@@ -74,5 +75,8 @@ namespace Model.EF
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RATE> RATE { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PRODUCT_SIZE> PRODUCT_SIZE { get; set; }
     }
 }

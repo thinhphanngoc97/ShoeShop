@@ -24,6 +24,7 @@ namespace Model.EF
         public virtual DbSet<RATE> RATE { get; set; }
         public virtual DbSet<USER> USER { get; set; }
         public virtual DbSet<SIZE> SIZE { get; set; }
+        public virtual DbSet<PRODUCT_SIZE> PRODUCT_SIZE { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -95,6 +96,12 @@ namespace Model.EF
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PRODUCT>()
+                .HasMany(e => e.PRODUCT_SIZE)
+                .WithRequired(e => e.PRODUCT)
+                .HasForeignKey(e => e.Id_Product)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PRODUCT>()
                 .HasMany(e => e.PRODUCT_IMAGE)
                 .WithOptional(e => e.PRODUCT)
                 .HasForeignKey(e => e.Id_Product);
@@ -128,6 +135,12 @@ namespace Model.EF
                 .HasMany(e => e.INVOICE)
                 .WithOptional(e => e.USER)
                 .HasForeignKey(e => e.Id_User);
+
+            modelBuilder.Entity<SIZE>()
+                .HasMany(e => e.PRODUCT_SIZE)
+                .WithRequired(e => e.SIZE)
+                .HasForeignKey(e => e.Id_Size)
+                .WillCascadeOnDelete(false);
         }
     }
 }
