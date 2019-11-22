@@ -1,0 +1,253 @@
+﻿@model Model.EF.PRODUCT
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    var listImage = (List<Model.EF.PRODUCT_IMAGE>)ViewBag.ListImage;
+    var listRelatedProducts = (List<Model.EF.PRODUCT>)ViewBag.ListRelatedProducts;
+    var listCountRate = (int[])ViewBag.ListCountRate;
+}
+@section additionalJs{
+    <script src="~/Scripts/controllers/cart-controller.js"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=2107095429555840&autoLogAppEvents=1"></script>
+}
+<script type="text/javascript">
+    var model_id = @Html.Raw(Json.Encode(Model.Id));
+    var model_name = @Html.Raw(Json.Encode(Model.Name));
+
+    /*-- Facebook Sharer --*/
+    window.onload = function () {
+        document.getElementById('fb-share-btn').onclick = function () {
+            FB.ui({
+                method: 'share',
+                display: 'popup',
+                href: 'https://developers.facebook.com/docs/',
+            }, function (response) { });
+        }
+    };
+
+</script>
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Chi tiết sản phẩm</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<!--================Single Product Area =================-->
+<div class="product_image_area">
+    <div class="container">
+        <div class="row s_product_inner">
+            <div class="col-md-6 col-lg-4">
+                <div class="s_Product_carousel">
+                    <div class="single-prd-item">
+                        <img class="img-fluid" src="@Model.Image_Thumbnail" alt="">
+                    </div>
+                    @foreach (var item in listImage)
+                    {
+                        <div class="single-prd-item">
+                            <img class="img-fluid" src="@item.Data" alt="">
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-6 offset-lg-1">
+                <div class="s_product_text">
+                    <h3>@Model.Name</h3>
+                    <h2>@(Model.Discount_Amount > 0 ? String.Format("{0:0,0}đ", Model.Price * (100 - Model.Discount_Amount) / 100) : String.Format("{0:0,0}đ", Model.Price))</h2>
+                    <h4 class="l-through">@(Model.Discount_Amount > 0 ? String.Format("{0:0,0}đ", Model.Price) : null)</h4>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <ul class="list">
+                                <li><a href="#"><span>Loại giày: </span>   @Model.CATEGORY.Name</a></li>
+                                <li><a href="#"><span>Mã SP: </span>   @Model.Model_Number</a></li>
+                                <li><a href="#"><span>Tình trạng: </span>   @Model.Status</a></li>
+                                <li><a href="#"><span>Bảo hành: </span>   @Model.Warranty_Period</a></li>
+                            </ul>
+                            <div class="social-button-group">
+                                <ul class="list">
+                                    <li><a id="fb-share-btn"><span class="fa fa-facebook-f"></span></a></li>
+                                    <li><a id="tw-share-btn" href="http://www.twitter.com/intent/tweet?url=URL&via=Handle&text=Title" class="share-popup"><span class="fa fa-twitter"></span></a></li>
+                                    <li><a id="tb-share-btn" href="https://www.tumblr.com/widgets/share/tool/preview?shareSource=legacy&canonicalUrl=&url=Domain&posttype=link&content=ProductURL&feature=share&caption=Title" class="share-popup"><span class="fa fa-tumblr"></span></a></li>
+                                    <li><a id="pi-share-btn" href="http://pinterest.com/pin/create/button/?url=URL&media=Image_URL&description=Description" class="share-popup"><span class="fa fa-pinterest"></span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="product_count">
+                                <label for="qty">Số lượng:</label>
+                                <input type="text" name="qty" id="qty" data-id="@Model.Id" maxlength="12" value="1" class="input-text">
+                                <button onclick="var result = document.getElementById('qty'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                        class="increase" type="button">
+                                    <i class="lnr lnr-chevron-up"></i>
+                                </button>
+                                <button onclick="var result = document.getElementById('qty'); var sst = result.value; if( !isNaN( sst ) && sst > 1 ) result.value--;return false;"
+                                        class="reduced" type="button">
+                                    <i class="lnr lnr-chevron-down"></i>
+                                </button>
+                            </div>
+                            <div class="card_area d-flex align-items-center">
+                                <a class="primary-btn" id="add_to_cart" href="#">Thêm vào giỏ</a>
+                            </div>
+                        </div>
+                    </div>
+                    <p>@Model.Description</p> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--================End Single Product Area =================-->
+<!--================Product Description Area =================-->
+<section class="product_description_area">
+    <div class="container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+                   aria-selected="false">Đánh giá</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                   aria-selected="false">Đặc điểm kỹ thuật</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            @*Đánh giá*@
+            <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+                <div class="row total_rate">
+                    <div class="col-lg-4">
+                        <div class="box_total">
+                            <h5>Xếp hạng trung bình</h5>
+                            <h4><span id="average-rate">@String.Format("{0:0.0}", @ViewBag.AverageRate)</span>/5</h4>
+                            <h6>(<span id="total-rate-1">@ViewBag.TotalRate</span> lượt xếp hạng)</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="rating_list">
+                            <h5>Dựa trên <span id="total-rate-2">@ViewBag.TotalRate</span> lượt xếp hạng:</h5>
+                            <ul class="list">
+                                @for (int i = listCountRate.Length; i > 0; i--)
+                                {
+                                    <li>
+                                        @for (int j = i; j > 0; j--)
+                                        {
+                                            <i class="fa fa-star"></i>
+                                        }
+                                        @for (int k = 0; k < listCountRate.Length - i; k++)
+                                        {
+                                            <i class="fa fa-star-o"></i>
+                                        }
+                                        @* "&ensp;" means 2 spaces, "&emsp;" means 4 spaces *@
+                                        &ensp; <span id="count-rate-@(listCountRate.Length - i)">@listCountRate[i - 1]</span> lượt
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="review_box">
+                            <h5>Xếp hạng của bạn:</h5>
+                            <div class="rate list"></div>
+                            <div>
+                                <span id="point" data-id="@Model.Id">4</span>
+                                <span>/5</span>
+                            </div>
+                            <a class="primary-btn mt-2" id="send_rating" href="#">Gửi</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="fb-comments" data-href="http://localhost:55110/chi-tiet/@Model.Metadata-@Model.Id" data-width="auto" data-numposts="5" data-order-by="reverse_time"></div>
+            </div>
+            @*Đặc điểm kỹ thuật*@
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h5>Mã sản phẩm</h5>
+                                </td>
+                                <td>
+                                    <h5>@Model.Model_Number</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Kiểu dáng</h5>
+                                </td>
+                                <td>
+                                    <h5>@Model.Style</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Xuất xứ</h5>
+                                </td>
+                                <td>
+                                    <h5>@Model.MANUFACTURER.Country</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Thương hiệu</h5>
+                                </td>
+                                <td>
+                                    <h5>@Model.MANUFACTURER.Name</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Chất liệu giày</h5>
+                                </td>
+                                <td>
+                                    <h5>@Model.Material</h5>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Product Description Area =================-->
+<!-- Start related-product Area -->
+<section class="related-product-area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <div class="section-title">
+                    <h1>Sản phẩm liên quan</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in listRelatedProducts)
+            {
+                <a href="/chi-tiet/@item.Metadata-@item.Id">
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <div class="single-product">
+                            <img class="img-fluid" src="@item.Image_Thumbnail" alt="">
+                            <div class="product-details s_product_text">
+                                <h6>
+                                    @item.Name
+                                </h6>
+                                <div class="price">
+                                    <h6>@(item.Discount_Amount > 0 ? String.Format("{0:0,0}đ", item.Price * (100 - item.Discount_Amount) / 100) : String.Format("{0:0,0}đ", item.Price))</h6>
+                                    <h6 class="l-through">@(item.Discount_Amount > 0 ? String.Format("{0:0,0}đ", item.Price) : null)</h6>
+                                </div>
+                                <div class="prd-bottom card_area">
+                                    <a class="primary-btn" href="/them-gio-hang?productId=@item.Id&quantity=1">Thêm vào giỏ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+
+    </div>
+</section>
+<!-- End related-product Area -->
