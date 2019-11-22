@@ -220,6 +220,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManufacturerController.cs" />
     <Compile Include="Areas\Admin\Controllers\MessageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Areas\Admin\Views\Manufacturer\ManufacturerController.cs" />
     <Compile Include="Common\CommonConstants.cs" />
@@ -442,7 +443,6 @@
     <Folder Include="Areas\Admin\Views\Customer\" />
     <Folder Include="Areas\Admin\Views\Discount\" />
     <Folder Include="Areas\Admin\Views\Message\" />
-    <Folder Include="Areas\Admin\Views\Product\" />
     <Folder Include="Scripts\controllers\" />
     <Folder Include="Views\Contact\" />
   </ItemGroup>
@@ -503,6 +503,9 @@
     <Content Include="Areas\Admin\Views\Category\CategoryDetailForm.cshtml" />
     <Content Include="Areas\Admin\Views\Category\InsertCategoryForm.cshtml" />
     <Content Include="Content\scss\theme\_about.scss" />
+    <Content Include="Areas\Admin\Views\Product\AddProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Product.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\ProductDetail.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\.DS_Store" />
     <Content Include="Views\Home\HeaderCategory.cshtml" />

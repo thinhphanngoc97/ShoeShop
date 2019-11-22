@@ -1,0 +1,121 @@
+﻿@using Model.EF
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    var listCategory = (SelectList)ViewBag.ListCategory;
+    var listManufacturer = (SelectList)ViewBag.ListManufacturer;
+}
+@model PRODUCT
+
+@section privateJS{
+    <script src="~/Areas/Admin/Content/js/controllers/product-controller.js"></script>
+}
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            @using (Html.BeginForm("EditProduct", "Product", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body card-block">
+                                <div class="form-horizontal">
+                                    <div class="row form-group">
+                                        <div class="col-12">
+                                            <img class="img-fluid" src="@Model.Image_Thumbnail" alt="" id="thumbnail_preview" />
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-12">
+                                            <label class=" form-control-label">Chọn ảnh mặt trước</label>
+                                            <input type="file" accept=".jpg, .png, .jpeg" class="form-control-file" id="thumbnail_img">
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-12">
+                                            <label class=" form-control-label">Chọn những ảnh khác</label>
+                                            <input type="file" multiple="" accept=".jpg, .png, .jpeg" class="form-control-file" id="other_imgs" name="other_imgs">
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-12">
+                                            <a href="#" id="upload_btn" class="btn btn-success btn-sm">Tải ảnh lên</a>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-12">
+                                            @Html.TextBoxFor(model => model.Image_Thumbnail, new { @class = "form-control", @readonly = "", @id = "base64_result", @hidden = "" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-body card-block">
+                                <div class="form-horizontal">
+                                    <div class="row form-group">
+                                        <div class="col-12 col-md-6">
+                                            <label class=" form-control-label">ID</label>
+                                            @Html.TextBoxFor(model => model.Id, new { @class = "form-control", @readonly = "" })
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class=" form-control-label">Tên sản phẩm</label>
+                                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-12 col-md-6">
+                                            <label class=" form-control-label">Model number</label>
+                                            @Html.TextBoxFor(model => model.Model_Number, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class=" form-control-label">Tình trạng</label>
+                                            @Html.DropDownListFor(model => model.Status, new SelectList(new List<string> { "Còn hàng", "Hết hàng" }, Model.Status), new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-12 col-md-6">
+                                            <label class=" form-control-label">Loại sản phẩm</label>
+                                            @Html.DropDownListFor(model => model.Id_Category, listCategory, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class=" form-control-label">Thương hiệu</label>
+                                            @Html.DropDownListFor(model => model.Id_Manufacturer, listManufacturer, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-12 col-md-6">
+                                            <label class=" form-control-label">Đơn giá</label>
+                                            @Html.TextBoxFor(model => model.Price, "{0:0}", new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class=" form-control-label">Giảm giá (%)</label>
+                                            @Html.TextBoxFor(model => model.Discount_Amount, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-12 col-md-6">
+                                            <label class=" form-control-label">Thời gian tạo</label>
+                                            @Html.TextBoxFor(model => model.Created_Time, "{0:HH:mm:ss dd/MM/yyyy}", new { @class = "form-control", @readonly = "" })
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class=" form-control-label">Thời gian bảo hành</label>
+                                            @Html.TextBoxFor(model => model.Warranty_Period, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="action_button_form">
+                                        <button type="submit" class="btn btn-primary" id="save_changes">
+                                            <i class="zmdi zmdi-save"></i> Lưu thay đổi
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
