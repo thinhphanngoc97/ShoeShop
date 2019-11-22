@@ -19,5 +19,25 @@ namespace ShoeShop.Controllers
         {
             return PartialView(productDAO.GetNewestProducts());
         }
+
+        public ActionResult ProductDetail(int id, string number_of_stars = null)
+        {
+            var product = productDAO.GetProductById(id);
+
+            productDAO.GetProductExtraInfo(id);
+
+            ViewBag.ListImage = productDAO.ListImage;
+            ViewBag.ListRelatedProducts = productDAO.ListRelatedProducts;
+            ViewBag.AverageRate = productDAO.AverageRate;
+            ViewBag.TotalRate = productDAO.TotalRate;
+            ViewBag.ListCountRate = productDAO.ListCountRate;
+
+            if (!String.IsNullOrEmpty(number_of_stars))
+            {
+                productDAO.SaveRating(Double.Parse(number_of_stars), id);
+            }
+
+            return View(product);
+        }
     }
 }

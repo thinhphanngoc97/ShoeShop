@@ -509,6 +509,7 @@
     <Content Include="Views\Category\ProductList.cshtml" />
     <Content Include="Views\Category\ProductGrid.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Product\ProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
