@@ -6118,7 +6118,7 @@ label {
 .cart_inner .table tbody tr td {
     padding-top: 20px;
     padding-bottom: 20px;
-    vertical-align: middle;
+    /*vertical-align: middle;*/
     align-self: center;
     text-align: center;
 }
@@ -6161,8 +6161,9 @@ label {
 }
 
 .cart_inner .table tbody tr td .media .media-body {
-    vertical-align: middle;
-    align-self: center;
+    /*vertical-align: middle;
+    align-self: center;*/
+    padding-left: 10px;
 }
 
     .cart_inner .table tbody tr td .media .media-body h5 {

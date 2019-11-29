@@ -12,7 +12,6 @@ namespace Model.DAO
         ShoeShopDbContext db = null;
 
         public List<PRODUCT_IMAGE> ListImage { get; set; }
-        public List<PRODUCT_IMAGE> _ListImage { get; set; }
         public List<PRODUCT> ListRelatedProducts { get; set; }
         public int TotalRate { get; set; }
         public double? AverageRate { get; set; }

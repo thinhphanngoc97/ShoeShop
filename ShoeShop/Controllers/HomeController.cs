@@ -1,4 +1,5 @@
 ﻿using Model.DAO;
+using ShoeShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,20 @@ namespace ShoeShop.Controllers
             ViewBag.CategoryList = new CategoryDAO().GetListOfCategories();
 
             return View();
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult HeaderCart()
+        {
+            var cart = Session[Common.CommonConstants.CART_SESSION];
+            var cartModel = new CartModel();
+
+            if (cart != null)
+            {
+                cartModel = (CartModel)cart;
+            }
+
+            return PartialView(cartModel);
         }
 
         [ChildActionOnly]

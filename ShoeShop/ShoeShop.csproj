@@ -227,6 +227,7 @@
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\MailHelper.cs" />
     <Compile Include="Common\MetaTitleCreator.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -234,6 +235,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartItemModel.cs" />
+    <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -510,6 +513,8 @@
     <Content Include="Views\Category\ProductGrid.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Product\ProductDetail.cshtml" />
+    <Content Include="Views\Cart\CartDetail.cshtml" />
+    <Content Include="Views\Home\HeaderCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">

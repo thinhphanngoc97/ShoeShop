@@ -1,0 +1,140 @@
+﻿@using ShoeShop.Models;
+@model CartModel
+@{
+    ViewBag.Title = "Chi tiết giỏ hàng";
+}
+@section additionalJs{
+    <script src="~/Scripts/controllers/cart-controller.js"></script>
+}
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Chi tiết giỏ hàng</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<!--================Cart Area =================-->
+<section class="cart_area">
+    <div class="container">
+        <div class="cart_inner">
+            @if (Model.ListCartItem.Count > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Sản phẩm</th>
+                                <th scope="col">Đơn giá</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @*Chi tiết sản phẩm*@
+                            @foreach (var item in Model.ListCartItem)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="media">
+                                            <img class="img-fluid" src="@item.Product.Image_Thumbnail" alt="">
+                                            <div class="media-body">
+                                                <a href="/chi-tiet/@item.Product.Metadata-@item.Product.Id">
+                                                    <h5>@item.Product.Name</h5>
+                                                </a>
+                                                <a class="delete_item" href="#" data-id="@item.Product.Id">Xoá</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h5>@(item.Product.Discount_Amount > 0 ? String.Format("{0:0,0}đ", item.Product.Price * (100 - item.Product.Discount_Amount) / 100) : String.Format("{0:0,0}đ", item.Product.Price))</h5>
+                                        @if (item.Product.Discount_Amount > 0)
+                                        {
+                                            <span class="l-through">@String.Format("{0:0,0}đ", item.Product.Price)</span>
+                                            <span> | -@item.Product.Discount_Amount%</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <div class="product_count">
+                                            <input type="text" name="qty" data-id="@item.Product.Id" id="@item.Product.Id" maxlength="12" value="@item.Quantity"
+                                                   class="input-text quantity_text">
+                                            <button onclick="var result = document.getElementById('@item.Product.Id'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                                    class="increase items-count" type="button">
+                                                <i class="lnr lnr-chevron-up"></i>
+                                            </button>
+                                            <button onclick="var result = document.getElementById('@item.Product.Id'); var sst = result.value; if( !isNaN( sst )&& sst > 1 ) result.value--;return false;"
+                                                    class="reduced items-count" type="button">
+                                                <i class="lnr lnr-chevron-down"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="total">
+                                            <h5>@String.Format("{0:0,0}đ", item.Quantity * (item.Product.Discount_Amount > 0 ? item.Product.Price * (100 - item.Product.Discount_Amount) / 100 : item.Product.Price))</h5>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <hr />
+
+                <div class="bottom_button row justify-content-end">
+                    <h5>Tạm tính: @String.Format("{0:0,0}đ", Model.Total)</h5>
+                </div>
+                if (Model.DiscountAmount > 0)
+                {
+                    <div class="bottom_button row justify-content-end">
+                        <h5>Giảm giá: -@String.Format("{0:0,0}đ", Model.DiscountAmount * Model.Total / 100)</h5>
+                    </div>
+                }
+
+                <div class="bottom_button row justify-content-end">
+                    @using (Html.BeginForm("ApplyDiscountCode", "Cart", FormMethod.Post))
+                    {
+                        <div class="cupon_text d-flex align-items-center">
+                            @Html.TextBoxFor(model => model.DiscountCode, new { @id = "discount_text", @type = "text", @placeholder = "Mã giảm giá" })
+                            <button type="submit" class="gray_btn" id="apply_code">Áp dụng</button>
+                        </div>
+                        <div style="padding:5px 20px">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                </div>
+                if (Model.DiscountAmount > 0)
+                {
+                    <div class="bottom_button row justify-content-end align-items-center">
+                        <div class="applied_code">
+                            <span class="applied_code">@Model.DiscountCode</span>
+                            <a href="#" id="delete_discount_code" title="Xoá mã giảm giá"><i class="ti-close"></i></a>
+                        </div>
+                    </div>
+                }
+                <div class="total_price row justify-content-end align-items-center">
+                    <h5>Tổng cộng: </h5>
+                    <h2 id="total_number">@String.Format("{0:0,0}đ", Model.Total - Model.DiscountAmount * Model.Total / 100)</h2>
+                </div>
+                <div class="out_button_area row justify-content-end">
+                    <div class="checkout_btn_inner d-flex align-items-center">
+                        <a class="gray_btn" href="/">Tiếp tục mua hàng</a>
+                        <a class="primary-btn" href="/thanh-toan">Thanh toán</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="justify-content-center">
+                    <p>Không có sản phẩm nào trong giỏ hàng của bạn. </p>
+                    <a class="primary-btn" href="/">Về trang chủ</a>
+                </div>
+
+
+            }
+        </div>
+    </div>
+</section>
+<!--================End Cart Area =================-->

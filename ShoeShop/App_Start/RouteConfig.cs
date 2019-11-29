@@ -28,6 +28,20 @@ namespace ShoeShop
             );
 
             routes.MapRoute(
+                name: "Cart Detail",
+                url: "gio-hang",
+                defaults: new { controller = "Cart", action = "CartDetail", id = UrlParameter.Optional },
+                namespaces: new[] { "ShoeShop.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Add Cart Item",
+                url: "them-gio-hang",
+                defaults: new { controller = "Cart", action = "AddItem", id = UrlParameter.Optional },
+                namespaces: new[] { "ShoeShop.Controllers" }
+            );
+
+            routes.MapRoute(
                name: "Contact",
                url: "lien-he",
                defaults: new { controller = "Contact", action = "Contact", id = UrlParameter.Optional },
