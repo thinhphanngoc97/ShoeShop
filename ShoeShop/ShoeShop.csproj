@@ -222,7 +222,6 @@
     <Compile Include="Areas\Admin\Controllers\MessageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
-    <Compile Include="Areas\Admin\Views\Manufacturer\ManufacturerController.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\ConvertImage.cs" />
     <Compile Include="Common\Encryptor.cs" />
@@ -509,6 +508,10 @@
     <Content Include="Areas\Admin\Views\Product\AddProduct.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Product.cshtml" />
     <Content Include="Areas\Admin\Views\Product\ProductDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Manufacturer\InsertManufacturerForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Manufacturer\Manufacturer.cshtml" />
+    <Content Include="Areas\Admin\Views\Manufacturer\ManufacturerDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Manufacturer\ManufacturerDetailForm.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\.DS_Store" />
     <Content Include="Views\Home\HeaderCategory.cshtml" />
