@@ -3,9 +3,9 @@
 	ViewBag.Title = "Tạo mới sản phẩm";
 	var listCategory = (SelectList)ViewBag.ListCategory;
 	var listManufacturer = (SelectList)ViewBag.ListManufacturer;
+    var listSize = (SelectList)ViewBag.ListSize;
 }
 @model PRODUCT
-
 @section privateJS{
     <script src="~/Areas/Admin/Content/js/controllers/product-controller.js"></script>
 }
@@ -101,7 +101,6 @@
                                         @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = "5" })
                                     </div>
                                 </div>
-
                                 <div class="action_button_form">
                                     <button type="submit" class="btn btn-primary" id="save_changes">
                                         <i class="zmdi zmdi-save"></i> Lưu thay đổi

@@ -442,9 +442,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Customer\" />
-    <Folder Include="Areas\Admin\Views\Discount\" />
-    <Folder Include="Areas\Admin\Views\Message\" />
     <Folder Include="Scripts\controllers\" />
     <Folder Include="Views\Contact\" />
   </ItemGroup>
@@ -512,6 +509,16 @@
     <Content Include="Areas\Admin\Views\Manufacturer\Manufacturer.cshtml" />
     <Content Include="Areas\Admin\Views\Manufacturer\ManufacturerDetail.cshtml" />
     <Content Include="Areas\Admin\Views\Manufacturer\ManufacturerDetailForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Customer.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\CustomerDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\CustomerDetailForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\InsertCustomerForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Discount\Discount.cshtml" />
+    <Content Include="Areas\Admin\Views\Discount\DiscountDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Discount\DiscountDetailForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Discount\InsertDiscountForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Message\Message.cshtml" />
+    <Content Include="Areas\Admin\Views\Message\MessageDetail.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\.DS_Store" />
     <Content Include="Views\Home\HeaderCategory.cshtml" />

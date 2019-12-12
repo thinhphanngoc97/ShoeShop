@@ -1,0 +1,47 @@
+﻿@using Model.EF;
+@model MESSAGE
+@{
+    /**/
+
+    ViewBag.Title = "Chi tiết lời nhắn";
+}
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="card">
+                        <div class="card-body card-block">
+                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col-12 col-md-6">
+                                        <label class=" form-control-label">ID</label>
+                                        @Html.TextBoxFor(model => model.Id, new { @class = "form-control", @readonly = "" })
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label class=" form-control-label">Tên khách hàng</label>
+                                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @readonly = "" })
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label class=" form-control-label">Email</label>
+                                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @readonly = "" })
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label class=" form-control-label">Tiêu đề</label>
+                                        @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @readonly = "" })
+                                    </div>
+                                    <div class="col-12">
+                                        <label class=" form-control-label">Nội dung</label>
+                                        @Html.TextAreaFor(model => model.Message_Content, new { @class = "form-control", @readonly = "", @rows="10" })
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

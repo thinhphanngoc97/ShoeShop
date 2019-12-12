@@ -7,10 +7,10 @@ using Model.DAO;
 using Model.EF;
 using System.IO;
 
-namespace ShoeShop.Areas.Admin.Controllers.ManufacturerCon
+namespace ShoeShop.Areas.Admin.Controllers
 {
     public class ManufacturerController : BaseController
-	{
+    {
         ManufacturerDAO manufacturer = new ManufacturerDAO();
         // GET: Admin/Manufacture
         public ActionResult Manufacturer()
