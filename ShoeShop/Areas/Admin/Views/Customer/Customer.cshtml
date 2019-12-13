@@ -1,0 +1,107 @@
+﻿@using Model.EF;
+@model List<USER>
+
+@{
+	ViewBag.Title = "Khách hàng";
+}
+
+@section privateJS{
+	<script src="~/Areas/Admin/Content/js/controllers/customer-controller.js"></script>
+}
+
+<div class="main-content">
+	<div class="section__content section__content--p30">
+		<div class="container-fluid">
+			<div class="table-data__tool">
+				<div class="table-data__tool-left">
+
+				</div>
+				<div class="table-data__tool-right">
+					<button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#insertCustomerModal">
+						<i class="zmdi zmdi-plus"></i>Tạo mới
+					</button>
+				</div>
+			</div>
+			<div class="table-responsive table--no-card m-b-30">
+				<table class="table table-borderless table-striped table-earning">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Họ tên</th>
+							<th>Số điện thoại</th>
+							<th>Email</th>
+							<th>Địa chỉ</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@{
+							foreach (var item in Model)
+							{
+								<tr>
+									<td>@item.Id</td>
+									<td>@item.Name</td>
+									<td>@item.Phone</td>
+									<td>@item.Email</td>
+									<td>@item.Address</td>
+									<td>
+										<a class="btn btn-link" href="@Url.Action("CustomerDetail", "Customer", new { idCustomer = item.Id })">Sửa</a>
+										|<button type="button" class="btn btn-link" data-toggle="modal" onclick="deleteCustomer(@item.Id)">Xoá</button>
+									</td>
+								</tr>
+							}
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- modal insert -->
+<div class="modal fade" id="insertCustomerModal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="smallmodalLabel">Thêm mới khách hàng</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="card">
+					<div class="card-body card-block">
+						@using (Ajax.BeginForm("InsertCustomer", "Customer", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "insertCustomerForm", OnSuccess = "fnInsertCustomerSuccess" }, new { @class = "form-horizontal", @id = "insertCustomerForm" }))
+						{
+							@Html.Partial("InsertCustomerForm", new USER());
+						}
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- modal delete -->
+<div class="modal fade" id="deleteCustomerModal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="smallmodalLabel">Xác nhận xoá</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>
+					Bạn có chắc chắn muốn xoá không?
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+				<button type="button" class="btn btn-primary" id="confirmDeleteCustomer">Xoá</button>
+			</div>
+		</div>
+	</div>
+</div>
