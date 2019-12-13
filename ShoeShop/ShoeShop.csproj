@@ -232,13 +232,17 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CartItemModel.cs" />
     <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -410,6 +414,9 @@
     <Content Include="Content\scss\theme\_reset.scss" />
     <Content Include="Content\scss\theme\_variables.scss" />
     <Content Include="Scripts\bootstrap-material-design.js" />
+    <Content Include="Scripts\controllers\cart-controller.js" />
+    <Content Include="Scripts\controllers\contact-controller.js" />
+    <Content Include="Scripts\controllers\user-controller.js" />
     <Content Include="Scripts\ion.rangeSlider.js" />
     <Content Include="Scripts\jquery.ajaxchimp.min.js" />
     <Content Include="Scripts\jquery.magnific-popup.min.js" />
@@ -446,8 +453,6 @@
     <Folder Include="Areas\Admin\Views\Customer\" />
     <Folder Include="Areas\Admin\Views\Discount\" />
     <Folder Include="Areas\Admin\Views\Message\" />
-    <Folder Include="Scripts\controllers\" />
-    <Folder Include="Views\Contact\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Content\vendor\font-awesome-4.7\fonts\fontawesome-webfont.eot" />
@@ -518,6 +523,16 @@
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\Cart\CartDetail.cshtml" />
     <Content Include="Views\Home\HeaderCart.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
+    <Content Include="Views\Cart\CheckoutForm.cshtml" />
+    <Content Include="Views\User\RegisterForm.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Home\HeaderUser.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\LoginForm.cshtml" />
+    <Content Include="Views\Search\SearchResult.cshtml" />
+    <Content Include="Views\Contact\Contact.cshtml" />
+    <Content Include="Views\Contact\ContactForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">

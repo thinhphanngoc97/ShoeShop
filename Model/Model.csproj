@@ -138,6 +138,7 @@
   <ItemGroup>
     <Compile Include="DAO\AdminDAO.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
+    <Compile Include="DAO\ContactDAO.cs" />
     <Compile Include="DAO\DiscountCodeDAO.cs" />
     <Compile Include="DAO\InvoiceDAO.cs" />
     <Compile Include="DAO\InvoiceDetailDAO.cs" />

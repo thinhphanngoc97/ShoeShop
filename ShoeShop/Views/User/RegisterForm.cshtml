@@ -1,0 +1,33 @@
+﻿@model Model.EF.USER
+<div class="row login_form">
+    <div class="col-md-12 form-group">
+        @Html.TextBoxFor(model => model.Email, new { @type = "email", @class = "form-control", @name = "email", @placeholder = "Email *", @onfocus = "this.placeholder = ''", @onblur = "this.placeholder = 'Email'" })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+    <div class="col-md-12 form-group">
+        @Html.PasswordFor(model => model.Password, new { @type = "password", @class = "form-control", @name = "password", @placeholder = "Mật khẩu *", @onfocus = "this.placeholder = ''", @onblur = "this.placeholder = 'Mật khẩu'" })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    </div>
+    <div class="col-md-12 form-group">
+        @Html.TextBoxFor(model => model.Name, new { @type = "text", @class = "form-control", @name = "name", @placeholder = "Họ tên *", @onfocus = "this.placeholder = ''", @onblur = "this.placeholder = 'Họ tên'" })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+    <div class="col-md-12 form-group">
+        @Html.TextBoxFor(model => model.Phone, new { @type = "text", @class = "form-control", @name = "phone", @placeholder = "Số điện thoại *", @onfocus = "this.placeholder = ''", @onblur = "this.placeholder = 'Số điện thoại'" })
+        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+    </div>
+    <div class="col-md-12 form-group">
+        @Html.TextBoxFor(model => model.Address, new { @value = "", @type = "text", @class = "form-control", @name = "address", @placeholder = "Địa chỉ", @onfocus = "this.placeholder = ''", @onblur = "this.placeholder = 'Địa chỉ'" })
+        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+    </div>
+    <div style="padding:5px 20px">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+    <div class="col-md-12 form-group">
+        <button type="submit" class="primary-btn" id="btnRegister">Đăng kí</button>
+        <div class="redirect_login">
+            Đã có tài khoản?
+            <a href="/dang-nhap">Đăng nhập</a>
+        </div>
+    </div>
+</div>

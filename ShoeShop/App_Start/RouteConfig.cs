@@ -21,6 +21,13 @@ namespace ShoeShop
             );
 
             routes.MapRoute(
+                name: "Search",
+                url: "tim-kiem",
+                defaults: new { controller = "Search", action = "SearchResult", id = UrlParameter.Optional },
+                namespaces: new[] { "ShoeShop.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Product Detail",
                 url: "chi-tiet/{Metadata}-{id}",
                 defaults: new { controller = "Product", action = "ProductDetail", id = UrlParameter.Optional },
@@ -39,6 +46,27 @@ namespace ShoeShop
                 url: "them-gio-hang",
                 defaults: new { controller = "Cart", action = "AddItem", id = UrlParameter.Optional },
                 namespaces: new[] { "ShoeShop.Controllers" }
+            );
+
+            routes.MapRoute(
+               name: "Checkout",
+               url: "thanh-toan",
+               defaults: new { controller = "Cart", action = "Checkout", id = UrlParameter.Optional },
+               namespaces: new[] { "ShoeShop.Controllers" }
+            );
+
+            routes.MapRoute(
+               name: "Login",
+               url: "dang-nhap",
+               defaults: new { controller = "Login", action = "Login", id = UrlParameter.Optional },
+               namespaces: new[] { "ShoeShop.Controllers" }
+            );
+
+            routes.MapRoute(
+               name: "Register",
+               url: "dang-ki",
+               defaults: new { controller = "User", action = "Register", id = UrlParameter.Optional },
+               namespaces: new[] { "ShoeShop.Controllers" }
             );
 
             routes.MapRoute(

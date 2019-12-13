@@ -1,0 +1,143 @@
+﻿@using ShoeShop.Models;
+@using ShoeShop.Common
+@using Model.EF
+@{
+    var sessionCart = (CartModel)Session[CommonConstants.CART_SESSION];
+    var sessionUser = (USER)Session[CommonConstants.USER_SESSION];
+}
+@model Model.EF.INVOICE
+<div class="checkout_area row">
+    <div class="col-lg-7">
+        <div class="checkout_section">
+            <div class="title_head">
+                <h3>Thông tin giao hàng</h3>
+                @if (sessionUser == null)
+                {
+                    <p>Đã có tài khoản? <a href="/dang-nhap">Đăng nhập</a></p>
+                }
+            </div>
+            <div class="shipping_info">
+                <div class="form-group">
+                    <label for="shipping_name">Họ tên *</label>
+                    @Html.TextBoxFor(model => model.Customer_Name, new { @type = "text", @name = "shipping_name", @Value = (sessionUser != null ? sessionUser.Name : null) })
+                    @Html.ValidationMessageFor(model => model.Customer_Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="shipping_phone">Số điện thoại *</label>
+                            @Html.TextBoxFor(model => model.Customer_Phone, new { @type = "text", @name = "shipping_phone", @Value = (sessionUser != null ? sessionUser.Phone : null) })
+                            @Html.ValidationMessageFor(model => model.Customer_Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="shipping_email">Email</label>
+                            @Html.TextBoxFor(model => model.Customer_Email, new { @type = "email", @name = "shipping_email", @Value = (sessionUser != null ? sessionUser.Email : null) })
+                            @Html.ValidationMessageFor(model => model.Customer_Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="shipping_address">Địa chỉ *</label>
+                    @Html.TextBoxFor(model => model.Customer_Address, new { @type = "text", @name = "shipping_address", @Value = (sessionUser != null ? sessionUser.Address : null) })
+                    @Html.ValidationMessageFor(model => model.Customer_Address, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="shipping_message">Lời nhắn</label>
+                    @Html.TextAreaFor(model => model.Customer_Message, new { @type = "text", @name = "shipping_message", @rows = "5" })
+                    @Html.ValidationMessageFor(model => model.Customer_Message, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="checkout_section">
+            <div class="title_head">
+                <h3>Phương thức thanh toán</h3>
+            </div>
+            <div class="payment_info">
+                <div class="form-group">
+                    <label>
+                        @Html.RadioButtonFor(model => model.Payment_Method, "COD", new { @checked = "checked" })
+                        Thanh toán tiền mặt khi nhận hàng
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        @Html.RadioButtonFor(model => model.Payment_Method, "Banking")
+                        Chuyển khoản ngân hàng
+                    </label>
+                    <div id="bank_account_info">
+                        <p>
+                            Chủ tài khoản: PHAN NGOC THINH<br />
+                            Số tài khoản: 0381000580184<br />
+                            Ngân hàng Vietcombank - Chi nhánh Quận Thủ Đức
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="checkout_section cart_detail">
+            <div class="title_head">
+                <h3>Chi tiết đơn hàng</h3>
+                <a href="/gio-hang" class="edit_cart"><i class="fa fa-edit"></i>Chỉnh sửa</a>
+            </div>
+            <div class="cart_detail_info">
+                @foreach (var item in sessionCart.ListCartItem)
+                {
+                    <div class="cart_detail_item row">
+                        <div class="col-lg-8 col-6 item_name">
+                            <h6><a href="/chi-tiet/@item.Product.Metadata-@item.Product.Id">@item.Product.Name (@item.Quantity)</a></h6>
+                        </div>
+                        <div class="col-lg-4 col-6 item_price">
+                            <h6>@String.Format("{0:0,0}đ", item.Quantity * (item.Product.Discount_Amount > 0 ? item.Product.Price * (100 - item.Product.Discount_Amount) / 100 : item.Product.Price))</h6>
+                        </div>
+                    </div>
+                }
+                <hr />
+                <div class="total_info row">
+                    <div class="col-lg-7 col-6 item_name">
+                        <h6>Tạm tính:</h6>
+                    </div>
+                    <div class="col-lg-5 col-6 item_price">
+                        <h6> @String.Format("{0:0,0}đ", sessionCart.Total)</h6>
+                    </div>
+                </div>
+                <div class="total_info row">
+                    <div class="col-lg-7 col-6 item_name">
+                        <h6>Phí vận chuyển:</h6>
+                    </div>
+                    <div class="col-lg-5 col-6 item_price">
+                        <h6>Miễn phí</h6>
+                    </div>
+                </div>
+                @if (sessionCart.DiscountAmount > 0)
+                {
+                    <div class="total_info row">
+                        <div class="col-lg-7 col-6 item_name">
+                            <h6>Giảm giá:</h6>
+                        </div>
+                        <div class="col-lg-5 col-6 item_price">
+                            <h6>-@String.Format("{0:0,0}đ", sessionCart.DiscountAmount * sessionCart.Total / 100)</h6>
+                        </div>
+                    </div>
+                }
+                <div class="total_info row">
+                    <div class="col-6 item_name">
+                        <h6>Tổng cộng:</h6>
+                    </div>
+                    <div class="col-6 item_price">
+                        <h3>@String.Format("{0:0,0}đ", sessionCart.Total - sessionCart.DiscountAmount * sessionCart.Total / 100)</h3>
+                    </div>
+                </div>
+                <div class="total_info login_form">
+                    <div class="form-group">
+                        <button type="submit" class="primary-btn finish_checkout">Đặt hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,4 +1,6 @@
 ﻿using Model.DAO;
+using Model.EF;
+using ShoeShop.Common;
 using ShoeShop.Models;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,19 @@ namespace ShoeShop.Controllers
         public ActionResult Index()
         {
             ViewBag.CategoryList = new CategoryDAO().GetListOfCategories();
+
+            if (Request.Cookies[CommonConstants.USER_COOKIE] != null && Session[CommonConstants.USER_SESSION] == null)
+            {
+                var userDAO = new UserDAO();
+                var result = userDAO.LoginCheck(Request.Cookies[CommonConstants.USER_COOKIE][CommonConstants.USEREMAIL], Request.Cookies[CommonConstants.USER_COOKIE][CommonConstants.USERPASSWORD]);
+
+                if (result == 1)
+                {
+                    //Create session
+                    USER user = userDAO.GetByEmail(Request.Cookies[CommonConstants.USER_COOKIE][CommonConstants.USEREMAIL]);
+                    Session.Add(CommonConstants.USER_SESSION, user);
+                }
+            }
 
             return View();
         }
@@ -36,6 +51,13 @@ namespace ShoeShop.Controllers
         {
             var listCategory = new CategoryDAO().GetListOfCategories();
             return PartialView(listCategory);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult HeaderUser()
+        {
+            var sessionUser = (USER)Session[Common.CommonConstants.USER_SESSION];
+            return PartialView(sessionUser);
         }
 
         public ActionResult About()

@@ -89,7 +89,7 @@
                 if (Model.DiscountAmount > 0)
                 {
                     <div class="bottom_button row justify-content-end">
-                        <h5>Giảm giá: -@String.Format("{0:0,0}đ", Model.DiscountAmount * Model.Total / 100)</h5>
+                        <h5>Giảm giá: @String.Format("{0:0,0}đ", Model.DiscountAmount * Model.Total / 100)</h5>
                     </div>
                 }
 

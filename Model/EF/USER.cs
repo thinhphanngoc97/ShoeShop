@@ -1,4 +1,4 @@
-namespace Model.EF
+﻿namespace Model.EF
 {
     using System;
     using System.Collections.Generic;
@@ -17,22 +17,22 @@ namespace Model.EF
 
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập vào tên!")]
         [StringLength(255)]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập vào email!")]
         [StringLength(255)]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập vào mật khẩu!")]
         [StringLength(255)]
         public string Password { get; set; }
 
         [StringLength(255)]
         public string Address { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập vào số điện thoại!")]
         [StringLength(20)]
         public string Phone { get; set; }
 

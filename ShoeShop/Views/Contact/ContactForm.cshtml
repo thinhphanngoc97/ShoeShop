@@ -1,0 +1,40 @@
+﻿@model Model.EF.MESSAGE
+@using ShoeShop.Common
+@using Model.EF
+@{
+    var sessionUser = (USER)Session[CommonConstants.USER_SESSION];
+}
+<div class="shipping_info">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="name">Họ tên *</label>
+                @Html.TextBoxFor(model => model.Name, new { @type = "text", @name = "name", @Value = (sessionUser != null ? sessionUser.Name : null) })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="email">Email *</label>
+                @Html.TextBoxFor(model => model.Email, new { @type = "email", @name = "email", @Value = (sessionUser != null ? sessionUser.Email : null) })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="title">Tiêu đề</label>
+        @Html.TextBoxFor(model => model.Title, new { @type = "text", @name = "title" })
+        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <label for="message">Lời nhắn *</label>
+        @Html.TextAreaFor(model => model.Message_Content, new { @type = "text", @name = "message", @rows = "5" })
+        @Html.ValidationMessageFor(model => model.Message_Content, "", new { @class = "text-danger" })
+    </div>
+    <div class="login_form send_message row justify-content-end">
+        <div class="form-group col-md-6">
+            <button type="submit" class="primary-btn">Gửi</button>
+        </div>
+    </div>
+</div>
+

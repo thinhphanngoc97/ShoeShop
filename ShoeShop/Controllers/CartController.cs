@@ -1,10 +1,13 @@
 ﻿using Model.DAO;
+using Model.EF;
 using ShoeShop.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace ShoeShop.Controllers
 {
@@ -72,6 +75,81 @@ namespace ShoeShop.Controllers
             return RedirectToAction("CartDetail");
         }
 
+        public JsonResult UpdateCart(string cartModel)
+        {
+            var jsonCart = new JavaScriptSerializer().Deserialize<List<CartItemModel>>(cartModel);
+            var sessionCart = (CartModel)Session[Common.CommonConstants.CART_SESSION];
+
+            foreach (var item in sessionCart.ListCartItem)
+            {
+                var jsonItem = jsonCart.SingleOrDefault(x => x.Product.Id == item.Product.Id);
+                if (jsonItem != null)
+                {
+                    item.Quantity = jsonItem.Quantity;
+                }
+            }
+
+            sessionCart.Total = GetCartTotal(sessionCart);
+            Session[Common.CommonConstants.CART_SESSION] = sessionCart;
+
+            return Json(new
+            {
+                status = true
+            });
+        }
+
+        public JsonResult DeleteItem(int productId)
+        {
+            var sessionCart = (CartModel)Session[Common.CommonConstants.CART_SESSION];
+            sessionCart.ListCartItem.RemoveAll(x => x.Product.Id == productId);
+            sessionCart.Total = GetCartTotal(sessionCart);
+
+            if (sessionCart.ListCartItem.Count == 0)
+            {
+                sessionCart = null;
+            }
+
+            Session[Common.CommonConstants.CART_SESSION] = sessionCart;
+
+            return Json(new
+            {
+                status = true
+            });
+        }
+
+        [HttpPost]
+        public ActionResult ApplyDiscountCode(CartModel cartModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var discountCodeDAO = new DiscountCodeDAO();
+                var sessionCart = (CartModel)Session[Common.CommonConstants.CART_SESSION];
+                var result = discountCodeDAO.GetDiscountCodeByCode(cartModel.DiscountCode);
+
+                if (result != null)
+                {
+                    sessionCart.DiscountCode = result.Code;
+                    sessionCart.DiscountAmount = (int)result.Discount_Amount;
+                    Session[Common.CommonConstants.CART_SESSION] = sessionCart;
+                }
+                else
+                {
+                    ResetDiscountCode(sessionCart);
+                    ModelState.AddModelError("", "Mã giảm giá không đúng!");
+                }
+            }
+
+            return RedirectToAction("CartDetail");
+        }
+
+        public ActionResult DeleteDiscountCode()
+        {
+            var sessionCart = (CartModel)Session[Common.CommonConstants.CART_SESSION];
+            ResetDiscountCode(sessionCart);
+
+            return RedirectToAction("CartDetail");
+        }
+
         // Supportive  methods
         private int GetCartTotal(CartModel cartModel)
         {
@@ -82,6 +160,76 @@ namespace ShoeShop.Controllers
         {
             cartModel.DiscountCode = null;
             cartModel.DiscountAmount = 0;
+        }
+
+        // Checkout Area
+        [HttpGet]
+        public ActionResult Checkout()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Checkout(INVOICE invoice)
+        {
+            var sessionCart = (CartModel)Session[Common.CommonConstants.CART_SESSION];
+            var sessionUser = Session[Common.CommonConstants.USER_SESSION];
+
+            invoice.Created_Time = DateTime.Now;
+            invoice.Status = 0;
+            invoice.Total = sessionCart.Total * (100 - sessionCart.DiscountAmount) / 100;
+
+            if (sessionCart.DiscountCode != null)
+            {
+                invoice.Id_Discount_Code = new DiscountCodeDAO().GetDiscountCodeByCode(sessionCart.DiscountCode).Id;
+            }
+
+            if (sessionUser != null)
+            {
+                var user = (USER)sessionUser;
+                invoice.Id_User = user.Id;
+            }
+
+            if (ModelState.IsValid)
+            {
+                var invoiceId = new InvoiceDAO().Insert(invoice);
+
+                if (invoiceId > 0)
+                {
+                    var detailDAO = new InvoiceDetailDAO();
+
+                    foreach (var item in sessionCart.ListCartItem)
+                    {
+                        var invoiceDetail = new INVOICE_DETAIL
+                        {
+                            Id_Invoice = invoiceId,
+                            Id_Product = item.Product.Id,
+                            Quantity = item.Quantity
+                        };
+
+                        detailDAO.Insert(invoiceDetail);
+                    }
+
+                    Session[Common.CommonConstants.CART_SESSION] = null;
+
+                    return Json(new { result = true });
+                }
+            }
+
+            return PartialView("CheckoutForm", invoice);
+        }
+
+        private string PartialViewToString(string viewName, object model)
+        {
+            ViewData.Model = model;
+            using (StringWriter writer = new StringWriter())
+            {
+                ViewEngineResult vResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                ViewContext vContext = new ViewContext(this.ControllerContext, vResult.View, ViewData, new TempDataDictionary(), writer);
+                vResult.View.Render(vContext, writer);
+
+                return writer.ToString();
+            }
         }
     }
 }

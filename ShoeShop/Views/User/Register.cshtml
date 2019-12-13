@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Đăng kí";
+}
+@section additionalJs {
+    <script src="~/Scripts/controllers/user-controller.js"></script>
+}
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Đăng kí tài khoản</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<!--================Login Box Area =================-->
+<section class="login_box_area section_gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="login_box_img">
+                    <img class="img-fluid" src="~/Content/img/singup.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="login_form_inner">
+                    <h3>Đăng kí</h3>
+                    @using (Ajax.BeginForm("Register", "User", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "registerForm", OnSuccess = "fnRegisterSuccess" }, new { @id = "registerForm" }))
+                    {
+                        @Html.Partial("RegisterForm")
+                    }
+                </div>
+            </div>
+            <dialog class="success_dialog">
+                <button type="button" class="close closeDialog" data-dismiss="modal" title="Đóng">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="dialog_wrapper">
+                    <p>
+                        <h4>Đăng kí thành công!</h4>
+                    </p>
+                    <p>Cảm ơn bạn đã trở thành thành viên của Shoe Shop!</p>
+                    <div class="dialog_navigation">
+                        <a href="/dang-nhap" class="primary-btn">Đăng nhập</a>
+                        <a href="/" class="return_home">Về trang chủ</a>
+                    </div>
+                </div>
+            </dialog>
+        </div>
+    </div>
+</section>

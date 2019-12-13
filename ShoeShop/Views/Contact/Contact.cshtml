@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Liên hệ";
+}
+@section additionalJs {
+    <script src="~/Scripts/controllers/contact-controller.js"></script>
+}
+<!--================Contact Area =================-->
+<section class="contact_area section_gap_bottom">
+    <div class="google_map_wrapper">
+        <iframe class="google_map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.7603717757756!2d106.65051621533415!3d10.752942462565786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752e8b4d535ce3%3A0x6fec30bb4db51405!2zOTkyIE5ndXnhu4VuIFRyw6NpLCBQaMaw4budbmcgMTQsIFF14bqtbiA1LCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2sus!4v1556558305622!5m2!1svi!2sus" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="contact_wrapper container">
+        <div class="row ">
+            <div class="col-lg-5 contact_info">
+                <h2>Thông tin liên hệ</h2>
+                <div class="info_detail">
+                    <div class="info_item row">
+                        <div class="col-1">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="col-11">
+                            <a>992 Nguyễn Trãi, Phường 14, Quận 5, Thành phố Hồ Chí Minh</a>
+                        </div>
+                    </div>
+                    <div class="info_item row">
+                        <div class="col-1">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="col-11">
+                            <a href="tel:(+84) 988 690 345" title="Gọi điện thoại đến số (+84) 988 690 345">(+84) 988 690 345</a>
+                        </div>
+                    </div>
+                    <div class="info_item row">
+                        <div class="col-1">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="col-11">
+                            <a href="mailto:info@shoeshop.com" title="Gửi email đến info@shoeshop.com">info@shoeshop.com</a>
+                        </div>
+                    </div>
+                    <br />
+                    <hr />
+                    <div class="info_item ">
+                        <h6>Kết nối với chúng tôi</h6>
+                        <a href="https://www.facebook.com/shoeshop"><i class="fa fa-facebook-f"></i></a>
+                        &nbsp;
+                        <a href="https://www.twitter.com/shoeshop"><i class="fa fa-twitter"></i></a>
+                        &nbsp;
+                        <a href="https://www.tumblr.com/shoeshop"><i class="fa fa-tumblr"></i></a>
+                        &nbsp;
+                        <a href="https://www.pinterest.com/shoeshop"><i class="fa fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 contact_message">
+                <h2>Gửi lời nhắn</h2>
+                @using (Ajax.BeginForm("Contact", "Contact", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "contactForm", OnSuccess = "fnContactSuccess" }, new { @id = "contactForm" }))
+                {
+                    @Html.Partial("ContactForm")
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Contact Area =================-->
+<dialog class="success_dialog">
+    <button type="button" class="close closeDialog" data-dismiss="modal" title="Đóng">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="dialog_wrapper">
+        <p>
+            <h4>Gửi lời nhắn thành công!</h4>
+        </p>
+        <p>Shoe Shop trân trọng cảm ơn và tiếp thu đóng góp của bạn!</p>
+        <div class="dialog_navigation">
+            <a href="/" class="primary-btn">Về trang chủ</a>
+        </div>
+    </div>
+</dialog>

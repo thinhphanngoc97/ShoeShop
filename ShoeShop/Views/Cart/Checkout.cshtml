@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Thanh toán";
+}
+@section additionalJs {
+    <script src="~/Scripts/controllers/cart-controller.js"></script>
+}
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Thanh toán</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<div class="container">
+    @using (Ajax.BeginForm("Checkout", "Cart", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "checkoutForm", OnSuccess = "fnCheckoutSuccess" }, new { @id = "checkoutForm" }))
+    {
+        @Html.Partial("CheckoutForm")
+    }
+</div>
+<dialog class="success_dialog">
+    <button type="button" class="close closeDialog" data-dismiss="modal" title="Đóng">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="dialog_wrapper">
+        <p>
+            <h4>Đặt hàng thành công!</h4>
+        </p>
+        <p>Shoe Shop trân trọng cảm ơn sự lựa chọn của bạn!</p>
+        <div class="dialog_navigation">
+            <a href="/" class="primary-btn">Về trang chủ</a>
+        </div>
+    </div>
+</dialog>

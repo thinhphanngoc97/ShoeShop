@@ -1,0 +1,27 @@
+﻿@model ShoeShop.Models.LoginModel
+<div class="row login_form">
+    <div class="col-md-12 form-group">
+        @Html.TextBoxFor(model => model.Email, new { @type = "email", @class = "form-control", @id = "name", @name = "name", @placeholder = "Email", @onfocus = "this.placeholder = ''", @onblur = "this.placeholder = 'Email'" })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+    <div class="col-md-12 form-group">
+        @Html.PasswordFor(model => model.Password, new { @type = "password", @class = "form-control", @id = "password", @name = "password", @placeholder = "Mật khẩu", @onfocus = "this.placeholder = ''", @onblur = "this.placeholder = 'Mật khẩu'" })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    </div>
+    <div style="padding:5px 20px">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+    <div class="col-md-12 form-group forgot_password">
+        <div class="row remember_me">
+            @Html.CheckBoxFor(model => model.RememberMe, new { @type = "checkbox", @id = "f-option2", @name = "selector" })
+            <label for="f-option2">Duy trì đăng nhập</label>
+        </div>
+        <a href="#">Quên mật khẩu?</a>
+    </div>
+    <div class="col-md-12 form-group">
+        <button type="submit" class="primary-btn">Đăng nhập</button>
+    </div>
+    <div class="col-md-12 form-group register">
+        <span class="">Chưa có tài khoản? <a href="/dang-ki">Đăng kí ngay</a></span>
+    </div>
+</div>
