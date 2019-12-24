@@ -12,7 +12,7 @@
                 <td>@item.Customer_Name</td>
                 <td>@item.Customer_Phone</td>
                 <td>@String.Format("{0:0,0}đ", item.Total)</td>
-                <td>
+                <td style="display:flex; justify-content:center; padding-left: 15px;">
                     <label class="au-checkbox">
                         <input type="checkbox" id="checkStatus_@item.Id" class="checkStatus" checked="@(item.Status == 1 ? true : false)">
                         <span class="au-checkmark"></span>

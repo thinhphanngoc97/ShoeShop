@@ -16,7 +16,7 @@
 		<input type="text" class="form-control" value="@String.Format("{0:0,0}đ", @Model.Total)" readonly>
 	</div>
 	<div class="col-12 col-md-6">
-		<label class=" form-control-label">Trạng thái thanh toán</label>
+		<label class=" form-control-label">Trạng thái giao hàng</label>
 		<label class="au-checkbox">
 			@Html.CheckBox("checkStatus", Model.Status == 1 ? true : false)
 			<span class="au-checkmark"></span>

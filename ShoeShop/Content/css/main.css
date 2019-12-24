@@ -8002,3 +8002,27 @@ label {
     text-align: justify;
 }
 /*============== end about_area css ================*/
+
+/*============== list_size_area css ================*/
+#size-list {
+    padding-top: 20px;
+}
+
+.size-item {
+    margin-right: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-style: solid;
+    border-color: #ffba00;
+    border-width: thin;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.actived, .size-item:hover {
+    background: linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
+    color: white;
+}
+/*============== end list_size_area css ================*/

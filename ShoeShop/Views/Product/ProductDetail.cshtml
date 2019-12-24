@@ -66,6 +66,31 @@
                                 <li><a href="#"><span>Tình trạng: </span>   @Model.Status</a></li>
                                 <li><a href="#"><span>Bảo hành: </span>   @Model.Warranty_Period</a></li>
                             </ul>
+                            @*<ul class="list-size">
+                                <li class="list-size-item size-item-actived"><a data-filter="38" data-value="38">38</a></li>
+                                <li class="list-size-item"><a data-filter="39" data-value="39">39</a></li>
+                                <li class="list-size-item"><a data-filter="40" data-value="40">40</a></li>
+                                <li class="list-size-item"><a data-filter="41" data-value="41">41</a></li>
+                                <li class="list-size-item"><a data-filter="42" data-value="42">42</a></li>
+                            </ul>*@
+                            <div id="size-list">
+                                <button class="size-item actived">38</button>
+                                <button class="size-item">39</button>
+                                <button class="size-item">40</button>
+                                <button class="size-item">41</button>
+                                <button class="size-item">42</button>
+                            </div>
+                            <script>
+                                var header = document.getElementById("size-list");
+                                var btns = header.getElementsByClassName("size-item");
+                                for (var i = 0; i < btns.length; i++) {
+                                    btns[i].addEventListener("click", function () {
+                                        var current = document.getElementsByClassName("actived");
+                                        current[0].className = current[0].className.replace(" actived", "");
+                                        this.className += " actived";
+                                    });
+                                }
+                            </script>
                             <div class="social-button-group">
                                 <ul class="list">
                                     <li><a id="fb-share-btn"><span class="fa fa-facebook-f"></span></a></li>
@@ -239,7 +264,7 @@
                                     <h6 class="l-through">@(item.Discount_Amount > 0 ? String.Format("{0:0,0}đ", item.Price) : null)</h6>
                                 </div>
                                 <div class="prd-bottom card_area">
-                                    <a class="primary-btn" href="/them-gio-hang?productId=@item.Id&quantity=1">Thêm vào giỏ</a>
+                                    <a></a>
                                 </div>
                             </div>
                         </div>
